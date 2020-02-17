@@ -1,25 +1,59 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Sidebar from "./components/Sidebar";
+import { Provider } from "react-redux";
+import store from "./store";
+// import { Router, Switch, Route, Redirect } from "react-router-dom";
+
+// function PrivateRoute({ children, ...rest }) {
+//   return (
+//     <Route
+//       {...rest}
+//       render={({ location }) =>
+//         fakeAuth.isAuthenticated ? (
+//           children
+//         ) : (
+//           <Redirect
+//             to={{
+//               pathname: "/login",
+//               state: { from: location }
+//             }}
+//           />
+//         )
+//       }
+//     />
+//   );
+// }
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      {/* <Router>
+        <Switch>
+          <Route path="/register">
+            <Register />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <PrivateRoute path="/dashboard">
+            <Dashboard />
+          </PrivateRoute>
+        </Switch>      <Router>
+        <Switch>
+          <Route path="/register">
+            <Register />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <PrivateRoute path="/dashboard">
+            <Dashboard />
+          </PrivateRoute>
+        </Switch>
+      </Router>
+      </Router> */}
+      <Sidebar/>
+    </Provider>
   );
 }
 
