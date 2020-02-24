@@ -1,7 +1,17 @@
-import React from "react";
-import Sidebar from "./components/Sidebar";
+import React, { Suspense } from "react";
 import { Provider } from "react-redux";
+import { CssBaseline } from "@material-ui/core";
+import { lazy } from "react";
+
 import store from "./store";
+import Sidebar from "./components/sidebar";
+import NavBar from "./components/navbar";
+import ErrorBoundary from "./components/errorBoundary";
+import Loader from "./components/loader";
+
+// Lazy Components
+const Content = lazy(() => import("./containers/content"));
+
 // import { Router, Switch, Route, Redirect } from "react-router-dom";
 
 // function PrivateRoute({ children, ...rest }) {
@@ -27,32 +37,16 @@ import store from "./store";
 function App() {
   return (
     <Provider store={store}>
-      {/* <Router>
-        <Switch>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <PrivateRoute path="/dashboard">
-            <Dashboard />
-          </PrivateRoute>
-        </Switch>      <Router>
-        <Switch>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <PrivateRoute path="/dashboard">
-            <Dashboard />
-          </PrivateRoute>
-        </Switch>
-      </Router>
-      </Router> */}
-      <Sidebar/>
+      <div style={{ display: "flex" }}>
+        <CssBaseline />
+        <NavBar />
+        <Sidebar />
+        <ErrorBoundary>
+          <Suspense fallback={<Loader isFullSize={true} />}>
+            <Content />
+          </Suspense>
+        </ErrorBoundary>
+      </div>
     </Provider>
   );
 }
