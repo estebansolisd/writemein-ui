@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import { connect } from "react-redux";
 import clsx from "clsx";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Paper, Typography } from "@material-ui/core";
 
 // Local
 
@@ -21,13 +22,15 @@ const Content = memo(props => {
       })}
     >
       <div className={classes.space} />
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <Dashboard />
-          </Route>
-        </Switch>
-      </Router>
+      <Paper className={classes.paper}>
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <Dashboard />
+            </Route>
+          </Switch>
+        </Router>
+      </Paper>
     </main>
   );
 });

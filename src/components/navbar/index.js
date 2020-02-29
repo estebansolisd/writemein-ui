@@ -1,8 +1,17 @@
 import React, { memo } from "react";
-import { AppBar, IconButton, Typography, Toolbar } from "@material-ui/core";
+import {
+  AppBar,
+  IconButton,
+  Typography,
+  Toolbar,
+  Grid,
+  TextField,
+  InputAdornment,
+  InputBase
+} from "@material-ui/core";
 import { connect } from "react-redux";
 import { useCallback } from "react";
-import { Menu as MenuIcon } from "@material-ui/icons";
+import { Menu as MenuIcon, Search as SearchIcon } from "@material-ui/icons";
 import clsx from "clsx";
 
 import { setVal } from "../../actions/todoActions";
@@ -31,24 +40,35 @@ const NavBar = memo(props => {
         [classes.appBarShift]: isSidebarOpen
       })}
     >
-      <Toolbar>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          data-el_name="btnToggleMenu"
-          data-el_target="isSidebarOpen"
-          onClick={handleClick}
-          edge="start"
-          className={clsx(
-            classes.menuButton,
-            isSidebarOpen && classes.hide
-          )}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" noWrap>
-          Persistent drawer
-        </Typography>
+      <Toolbar className={classes.toolbar}>
+        <div className={classes.firstRow}>
+          <div className={classes.menuBox}>
+            <div className={classes.p10}>
+              <MenuIcon
+                data-el_name="btnToggleMenu"
+                data-el_target="isSidebarOpen"
+                onClick={handleClick}
+                className={isSidebarOpen ? classes.hide : classes.menuButton}
+              />
+            </div>
+
+            <div className={classes.searchBox}>
+              <div className={classes.p10}>
+                <SearchIcon />
+              </div>
+              <div className={classes.searchInputContainer}>
+                <InputBase 
+                  fullWidth
+                  className={classes.searchInput}
+                  type="search"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h6>Avatar options</h6>
+        </div>
       </Toolbar>
     </AppBar>
   );

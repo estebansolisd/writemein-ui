@@ -9,9 +9,6 @@ export const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.enteringScreen
     })
   },
-  menuButton: {
-    marginRight: theme.spacing(2)
-  },
   hide: {
     display: "none"
   },
@@ -20,5 +17,37 @@ export const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     })
+  },
+  toolbar: {
+    background: "#fff",
+    color: "black",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between"
+  },
+  menuBox: {
+    display: "flex",
+    alignItems: "center"
+  },
+  p10: {
+    padding: 10
+  },
+  menuButton: {
+    cursor: "pointer"
+  },
+  firstRow: {
+    flex: 1
+  },
+  searchBox: {
+    flex: 1,
+    display: "flex",
+    alignItems: "center"
+  },
+  searchInput: {
+    borderBottom: "1px solid #ccc"
+  },
+  searchInputContainer: {
+    flex: 1,
+    padding: 10
   }
 }));

@@ -8,6 +8,7 @@ const initialState = {
 const todoReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_TODOS:
+      console.log(action.payload);
       return { ...state, ...action.payload };
     case SET_VAL:
       return { ...state, [action.payload.name]: action.payload.value };

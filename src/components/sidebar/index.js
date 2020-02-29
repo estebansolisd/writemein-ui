@@ -9,7 +9,8 @@ import {
   ListItemText,
   useTheme,
   ListItem,
-  ListItemIcon
+  ListItemIcon,
+  Typography
 } from "@material-ui/core";
 import { ChevronLeft, ChevronRight, Inbox, Mail } from "@material-ui/icons";
 
@@ -47,6 +48,9 @@ const Sidebar = memo(props => {
       }}
     >
       <div className={classes.drawerHeader}>
+        <Typography variant="h4">
+          TO-DO's  
+        </Typography>
         <IconButton
           onClick={handleClick}
           data-el_name="btnToggleMenu"

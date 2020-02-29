@@ -8,7 +8,8 @@ export const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
-    marginLeft: -240
+    marginLeft: -240,
+    background: "rgb(236, 239, 245)"
   },
   contentShift: {
     transition: theme.transitions.create("margin", {
@@ -23,5 +24,10 @@ export const useStyles = makeStyles(theme => ({
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
     justifyContent: "flex-end"
+  },
+  paper: {
+    padding:10,
+    height: `calc(100vh - 112px)`,
+    borderTop: "2px solid #77dccf"
   }
 }));

@@ -14,8 +14,8 @@ export function* handleGetTodos() {
         }
       }
     );
-    console.log(todosResponse);
-    yield put(setTodos(todosResponse));
+    // I know that this is bad variable naming
+    yield put(setTodos(todosResponse.data.data));
   } catch (error) {
     console.error(error);
   }
