@@ -8,7 +8,8 @@ export const useStyles = makeStyles(theme => ({
     position: "sticky",
     top: 0,
     zIndex: 1000,
-    height: "auto"
+    height: "auto",
+    padding: 10
   },
   dashboardContainer: {
     height: "100%",

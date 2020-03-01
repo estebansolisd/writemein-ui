@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from "react";
+import React, { memo } from "react";
 import { connect } from "react-redux";
 import { useCallback } from "react";
 import {
@@ -15,7 +15,6 @@ import {
 import { ChevronLeft, ChevronRight, Inbox, Mail } from "@material-ui/icons";
 
 import { setVal } from "../../actions/todoActions";
-import { loadTodos } from "../../actions/todoActions";
 import { useStyles } from "./style";
 
 const Sidebar = memo(props => {
@@ -34,8 +33,6 @@ const Sidebar = memo(props => {
     },
     [props, isSidebarOpen]
   );
-
-  console.log();
 
   return (
     <Drawer

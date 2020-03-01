@@ -1,7 +1,6 @@
 import { setTodos } from "../actions/todoActions";
 import axios from "axios";
 import { call, put } from "redux-saga/effects";
-// import { sendPrivateRequest } from "../util/api";
 
 export function* handleGetTodos() {
   try {

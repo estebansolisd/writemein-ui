@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import { Typography } from "@material-ui/core";
 
@@ -9,7 +9,18 @@ import { loadTodos } from "../../actions/todoActions";
 
 export const Dashboard = memo(props => {
   const classes = useStyles();
-  const { loadTodos, todos } = props;
+  const { todos, filter_todo } = props.todoReducer;
+
+  useEffect(() => {
+    props.loadTodos();
+  }, []);
+
+  
+  const filteredTodos = useMemo(
+    () =>
+      todos.filter(t => t.text.toLowerCase().includes(filter_todo.toLowerCase())),
+    [filter_todo, todos]
+  );
 
   return (
     <div className={classes.dashboardContainer}>
@@ -18,18 +29,15 @@ export const Dashboard = memo(props => {
       </div>
 
       <div className={classes.dashboardContent}>
-        {todos.length &&
-          todos
-            .filter(t => t.text.includes(""))
-            .map(todo => <TodoBar {...{ todo }} />)}
+        {filteredTodos.map((todo, i) => (
+          <TodoBar key={i} {...{ todo }} />
+        ))}
       </div>
     </div>
   );
 });
 
-const mapStateToProps = ({ todos }) => ({
-  todos
-});
+const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => ({
   loadTodos: () => dispatch(loadTodos())

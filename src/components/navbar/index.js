@@ -1,12 +1,7 @@
 import React, { memo } from "react";
 import {
   AppBar,
-  IconButton,
-  Typography,
   Toolbar,
-  Grid,
-  TextField,
-  InputAdornment,
   InputBase
 } from "@material-ui/core";
 import { connect } from "react-redux";
