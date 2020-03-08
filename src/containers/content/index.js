@@ -1,37 +1,29 @@
 import React, { memo } from "react";
 import { connect } from "react-redux";
-import clsx from "clsx";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Paper, Typography } from "@material-ui/core";
+import { Paper } from "@material-ui/core";
 
-// Local
+// Local componenets and modules
 
 import { useStyles } from "./style";
+import TodoForm from "../../components/todoForm";
 
 // Route Components
 import Dashboard from "../../components/dashboard";
 
 const Content = memo(props => {
   const classes = useStyles();
-  const { isSidebarOpen } = props.todoReducer;
-
   return (
-    <main
-      className={clsx(classes.content, {
-        [classes.contentShift]: isSidebarOpen
-      })}
-    >
-      <div className={classes.space} />
-      <Paper className={classes.paper}>
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              <Dashboard />
-            </Route>
-          </Switch>
-        </Router>
-      </Paper>
-    </main>
+    <Router>
+      <Switch>
+        <Route exact path="/dashboard">
+          <Paper elevation={3} className={classes.paper}>
+            <Dashboard />
+            <TodoForm />
+          </Paper>
+        </Route>
+      </Switch>
+    </Router>
   );
 });
 

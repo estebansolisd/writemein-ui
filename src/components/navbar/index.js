@@ -1,59 +1,40 @@
-import React, { memo } from "react";
-import {
-  AppBar,
-  Toolbar,
-  InputBase
-} from "@material-ui/core";
+import React, { memo, useCallback } from "react";
+import { AppBar, Toolbar, InputBase } from "@material-ui/core";
 import { connect } from "react-redux";
-import { useCallback } from "react";
-import { Menu as MenuIcon, Search as SearchIcon } from "@material-ui/icons";
-import clsx from "clsx";
+import { Search as SearchIcon } from "@material-ui/icons";
 
 import { setVal } from "../../actions/todoActions";
 import { useStyles } from "./style";
 
 const NavBar = memo(props => {
   const classes = useStyles();
-  const { isSidebarOpen } = props.todoReducer;
+  const { filter_todo } = props.todoReducer;
 
-  const handleClick = useCallback(
-    e => {
-      switch (e.currentTarget.dataset.el_name) {
-        case "btnToggleMenu":
-          props.setVal(e.currentTarget.dataset.el_target, !isSidebarOpen);
-          break;
-        default:
-          break;
-      }
-    },
-    [props, isSidebarOpen]
-  );
+  const handleChange = useCallback(e => {
+    switch (e.target.name) {
+      case "filter_todo":
+        props.setVal(e.target.name, e.target.value)
+        break;
+      default:
+        break;
+    }
+  }, []);
+
   return (
-    <AppBar
-      position="fixed"
-      className={clsx(classes.appBar, {
-        [classes.appBarShift]: isSidebarOpen
-      })}
-    >
+    <AppBar position="fixed">
       <Toolbar className={classes.toolbar}>
         <div className={classes.firstRow}>
           <div className={classes.menuBox}>
-            <div className={classes.p10}>
-              <MenuIcon
-                data-el_name="btnToggleMenu"
-                data-el_target="isSidebarOpen"
-                onClick={handleClick}
-                className={isSidebarOpen ? classes.hide : classes.menuButton}
-              />
-            </div>
-
             <div className={classes.searchBox}>
               <div className={classes.p10}>
                 <SearchIcon />
               </div>
               <div className={classes.searchInputContainer}>
-                <InputBase 
+                <InputBase
                   fullWidth
+                  name="filter_todo"
+                  onChange={handleChange}
+                  value={filter_todo}
                   className={classes.searchInput}
                   type="search"
                 />

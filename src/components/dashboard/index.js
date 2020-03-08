@@ -13,12 +13,14 @@ export const Dashboard = memo(props => {
 
   useEffect(() => {
     props.loadTodos();
+    // eslint-disable-next-line
   }, []);
 
-  
   const filteredTodos = useMemo(
     () =>
-      todos.filter(t => t.text.toLowerCase().includes(filter_todo.toLowerCase())),
+      todos.filter(t =>
+        t.text.toLowerCase().includes(filter_todo.toLowerCase())
+      ),
     [filter_todo, todos]
   );
 
@@ -28,11 +30,19 @@ export const Dashboard = memo(props => {
         <Typography variant="h5">All Tasks</Typography>
       </div>
 
-      <div className={classes.dashboardContent}>
-        {filteredTodos.map((todo, i) => (
-          <TodoBar key={i} {...{ todo }} />
-        ))}
-      </div>
+      {filteredTodos.length ? (
+        <div className={classes.dashboardContent}>
+          {filteredTodos.map((todo, i) => (
+            <TodoBar key={i} {...{ todo }} />
+          ))}
+        </div>
+      ) : (
+        <div className={classes.noResultsContainer}>
+          <Typography noWrap variant="body1">
+            No todos available please, create one
+          </Typography>
+        </div>
+      )}
     </div>
   );
 });

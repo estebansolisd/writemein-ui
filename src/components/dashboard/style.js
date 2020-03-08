@@ -17,6 +17,13 @@ export const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     padding: 10
   },
+  noResultsContainer: {
+    height: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 10
+  },
   dashboardContent: {
     height: "auto",
     overflow: "auto"
