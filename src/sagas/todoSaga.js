@@ -10,19 +10,15 @@ import {
   CREATE_TODO_SUCCESS,
   CREATE_TODO_ERROR
 } from "../actions/todoActions";
-import axios from "axios";
+import { sendPrivateRequest } from "../util/api";
 import { call, put } from "redux-saga/effects";
 
 export function* handleGetTodos() {
   try {
     const todosResponse = yield call(
-      axios.get,
+      sendPrivateRequest,
       "https://writemein-api.herokuapp.com/todos",
-      {
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTQ4Njk4ODQzMjU0ODVkNWJhODc0MGQiLCJpYXQiOjE1ODE4ODQ5MzN9.lzhJ4ZIkfT_I4YaTGLnZZVBD79WvddWt0RMUtKb2A2o`
-        }
-      }
+      "GET"
     );
 
     yield put({
@@ -44,13 +40,9 @@ export function* handleDeleteTodo({ payload }) {
 
     const { _id } = payload;
     const deleteTodoResponse = yield call(
-      axios.delete,
+      sendPrivateRequest,
       `https://writemein-api.herokuapp.com/todos/${_id}`,
-      {
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTQ4Njk4ODQzMjU0ODVkNWJhODc0MGQiLCJpYXQiOjE1ODE4ODQ5MzN9.lzhJ4ZIkfT_I4YaTGLnZZVBD79WvddWt0RMUtKb2A2o`
-        }
-      }
+      "DELETE"
     );
 
     yield put({
@@ -79,16 +71,12 @@ export function* handleUpdateTodo({ payload }) {
     const { todo } = payload;
     const { _id, is_completed, text } = todo;
     const updateTodoResponse = yield call(
-      axios.put,
+      sendPrivateRequest,
       `https://writemein-api.herokuapp.com/todos/${_id}`,
+      "PUT",
       {
         is_completed,
         text
-      },
-      {
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTQ4Njk4ODQzMjU0ODVkNWJhODc0MGQiLCJpYXQiOjE1ODE4ODQ5MzN9.lzhJ4ZIkfT_I4YaTGLnZZVBD79WvddWt0RMUtKb2A2o`
-        }
       }
     );
 
@@ -118,16 +106,10 @@ export function* handleCreateTodo({ payload }) {
 
     const { todo } = payload;
     const createTodoResponse = yield call(
-      axios.post,
+      sendPrivateRequest,
       `https://writemein-api.herokuapp.com/todos`,
-      {
-        ...todo
-      },
-      {
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTQ4Njk4ODQzMjU0ODVkNWJhODc0MGQiLCJpYXQiOjE1ODE4ODQ5MzN9.lzhJ4ZIkfT_I4YaTGLnZZVBD79WvddWt0RMUtKb2A2o`
-        }
-      }
+      "POST",
+      todo
     );
 
     yield put({

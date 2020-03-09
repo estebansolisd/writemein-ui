@@ -27,5 +27,11 @@ export const useStyles = makeStyles(theme => ({
   dashboardContent: {
     height: "auto",
     overflow: "auto"
+  },
+  paper: {
+    padding: 10,
+    height: `calc(100vh - 112px)`,
+    borderTop: "2px solid #77dccf",
+    width: "100%"
   }
 }));

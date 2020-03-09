@@ -32,5 +32,8 @@ export const useStyles = makeStyles(theme => ({
   searchInputContainer: {
     flex: 1,
     padding: 10
+  },
+  linkLogout:{
+    textDecoration: "none"
   }
 }));

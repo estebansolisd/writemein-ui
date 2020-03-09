@@ -1,12 +1,15 @@
 import React, { memo, useCallback } from "react";
-import { AppBar, Toolbar, InputBase } from "@material-ui/core";
+import { AppBar, Toolbar, InputBase, Button } from "@material-ui/core";
 import { connect } from "react-redux";
 import { Search as SearchIcon } from "@material-ui/icons";
+import { useHistory } from "react-router-dom";
 
+// Locals
 import { setVal } from "../../actions/todoActions";
 import { useStyles } from "./style";
 
 const NavBar = memo(props => {
+  const history = useHistory();
   const classes = useStyles();
   const { filter_todo } = props.todoReducer;
 
@@ -18,7 +21,18 @@ const NavBar = memo(props => {
       default:
         break;
     }
-  }, []);
+  }, [props]);
+
+  const handleClick = useCallback(e => {
+      switch (e.currentTarget.dataset.el_name) {
+        case "btnLogout":
+          localStorage.removeItem("TOKEN");
+          history.push("/");
+          break;
+        default:
+          break;
+      }
+    }, [])
 
   return (
     <AppBar position="fixed">
@@ -42,9 +56,9 @@ const NavBar = memo(props => {
             </div>
           </div>
         </div>
-        <div>
-          <h6>Avatar options</h6>
-        </div>
+        <Button data-el_name="btnLogout" onClick={handleClick} >
+          Logout
+        </Button>
       </Toolbar>
     </AppBar>
   );

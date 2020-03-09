@@ -15,7 +15,6 @@ import { Add as AddIcon } from "@material-ui/icons";
 import { connect } from "react-redux";
 
 import { createTodo } from "../../actions/todoActions";
-import clsx from "clsx";
 
 const TodoForm = memo(props => {
   const classes = useStyles();
