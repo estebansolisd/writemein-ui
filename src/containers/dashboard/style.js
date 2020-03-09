@@ -29,9 +29,9 @@ export const useStyles = makeStyles(theme => ({
     overflow: "auto"
   },
   paper: {
-    padding: 10,
     height: `calc(100vh - 112px)`,
     borderTop: "2px solid #77dccf",
-    width: "100%"
+    width: "100%",
+    marginTop: 70
   }
 }));

@@ -86,7 +86,7 @@ const Router = memo(props => {
                     margin: "0 auto"
                   }}
                 >
-                  404. upps you are lost.{" "}
+                  404. upps you are lost.
                 </h1>
               )}
             />
